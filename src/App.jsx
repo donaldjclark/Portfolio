@@ -288,7 +288,8 @@ export default function App() {
   // Cursor-follow background: updates CSS vars --x/--y on the container
   const containerRef = React.useRef(null)
   const audioRef = React.useRef(null)
-  const audioSrc = new URL('audio/resting-place.mp3', import.meta.env.BASE_URL).toString()
+  // Build a base-aware path for GitHub Pages or any subpath deployment
+  const audioSrc = `${import.meta.env.BASE_URL}audio/resting-place.mp3`
   const setPos = React.useCallback((x, y) => {
     const el = containerRef.current
     if (!el) return
