@@ -128,7 +128,7 @@ function Hero({ tilt = 1 }) {
       <ParallaxBoard className="overflow-hidden p-8 md:p-14" tilt={tilt}>
         <div className="absolute -right-6 -top-6 hidden h-28 w-28 animate-pulse rounded-3xl bg-gradient-to-br from-cyan-400/40 to-fuchsia-500/40 blur-xl md:block" />
         <Badge className="mb-6 gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 px-3 py-1 text-white">
-          <Sparkles className="h-4 w-4" /> hireable human with taste
+          <Sparkles className="h-4 w-4" /> available for projects
         </Badge>
         <h1 className="hero-title translate-y-2 opacity-90 transition-[transform,opacity] duration-500 text-balance text-4xl font-bold tracking-tight text-zinc-50 md:text-6xl">
           {PROFILE.name}
