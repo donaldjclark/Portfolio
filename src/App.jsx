@@ -288,6 +288,7 @@ export default function App() {
   // Cursor-follow background: updates CSS vars --x/--y on the container
   const containerRef = React.useRef(null)
   const audioRef = React.useRef(null)
+  const audioSrc = new URL('audio/resting-place.mp3', import.meta.env.BASE_URL).toString()
   const setPos = React.useCallback((x, y) => {
     const el = containerRef.current
     if (!el) return
@@ -372,7 +373,7 @@ export default function App() {
       {/* Now Playing */}
       <section className="relative z-10 mx-auto w-full px-6">
         {/* Hidden audio element. Put your file at public/audio/resting-place.mp3 */}
-        <audio ref={audioRef} src="/audio/resting-place.mp3" preload="metadata" playsInline />
+        <audio ref={audioRef} src={audioSrc} preload="metadata" playsInline />
         <ParallaxBoard tilt={tilt} className="mt-8 overflow-hidden rounded-3xl p-0">
           <Card className="border-transparent bg-transparent shadow-none">
             <CardContent className="flex flex-col items-start justify-between gap-4 p-6 md:flex-row md:items-center">
