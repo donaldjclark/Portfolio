@@ -1,0 +1,46 @@
+/* src/VibeDisplay.css */
+
+.vibe-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70svh;
+  animation: vibeShake 1.5s infinite alternate;
+  position: relative;
+}
+
+@keyframes vibeShake {
+  0% { transform: scale(1) rotate(-2deg); }
+  50% { transform: scale(1.1) rotate(2deg); }
+  100% { transform: scale(1) rotate(-2deg); }
+}
+
+.vibe-emoji {
+  font-size: 12vw;
+  animation: emojiSpin 3s infinite linear;
+  will-change: transform;
+}
+
+@keyframes emojiSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1.2); }
+}
+
+.vibe-text {
+  font-size: 3vw;
+  color: #fff;
+  margin-top: 2rem;
+  text-shadow: 0 0 20px #ff00cc, 0 0 40px #00ffcc;
+}
+
+.vibe-level {
+  font-weight: bold;
+  color: #ffcc00;
+  animation: levelPulse 1s infinite alternate;
+}
+
+@keyframes levelPulse {
+  0% { color: #ffcc00; }
+  100% { color: #00ffcc; }
+}
