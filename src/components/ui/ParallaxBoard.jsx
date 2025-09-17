@@ -233,6 +233,24 @@ export function ParallaxBoard({ className = "", children, tilt = 1 }) {
   const state = React.useRef({ rx: 0, ry: 0 })
   const lerp = (a, b, t) => a + (b - a) * t
 
+  const raf = React.useCallback(() => {
+    const el = ref.current
+    if (!el) return
+    state.current.rx = lerp(state.current.rx, target.current.rx, 0.12)
+    state.current.ry = lerp(state.current.ry, target.current.ry, 0.12)
+    el.style.transform = `rotateX(${state.current.rx}deg) rotateY(${state.current.ry}deg)`
+    el.style.setProperty("--x", target.current.x)
+    el.style.setProperty("--y", target.current.y)
+    const done =
+      Math.abs(state.current.rx - target.current.rx) <= 0.01 &&
+      Math.abs(state.current.ry - target.current.ry) <= 0.01
+    if (!done) {
+      rafRef.current = requestAnimationFrame(raf)
+    } else {
+      rafRef.current = 0
+    }
+  }, [])
+
   // Global pointer tracking so all cards move in unison
   React.useEffect(() => {
     const move = (e) => {
@@ -264,25 +282,7 @@ export function ParallaxBoard({ className = "", children, tilt = 1 }) {
       window.removeEventListener('touchmove', move)
       window.removeEventListener('pointerleave', leave)
     }
-  }, [tilt])
-
-  const raf = () => {
-    const el = ref.current
-    if (!el) return
-    state.current.rx = lerp(state.current.rx, target.current.rx, 0.12)
-    state.current.ry = lerp(state.current.ry, target.current.ry, 0.12)
-    el.style.transform = `rotateX(${state.current.rx}deg) rotateY(${state.current.ry}deg)`
-    el.style.setProperty("--x", target.current.x)
-    el.style.setProperty("--y", target.current.y)
-    const done =
-      Math.abs(state.current.rx - target.current.rx) <= 0.01 &&
-      Math.abs(state.current.ry - target.current.ry) <= 0.01
-    if (!done) {
-      rafRef.current = requestAnimationFrame(raf)
-    } else {
-      rafRef.current = 0
-    }
-  }
+  }, [tilt, raf])
 
   return (
     <div className="relative [perspective:1100px]">
